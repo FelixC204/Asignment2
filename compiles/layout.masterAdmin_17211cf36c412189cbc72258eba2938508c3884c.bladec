@@ -1,0 +1,13 @@
+<?php echo $this->runChild('layout.elements.head'); ?>
+<div id="wrapper">
+ <?php echo $this->runChild('layout.elements.sidebar'); ?>
+ <div id="content-wrapper" class="d-flex flex-column">
+ <div id="content">
+ <?php echo $this->runChild('layout.elements.topbar'); ?>
+
+ <?php echo $this->yieldContent('content'); ?>
+
+ <?php echo $this->runChild('layout.elements.footer'); ?>
+ </div>
+</div>
+<?php echo $this->runChild('layout.elements.script'); ?>

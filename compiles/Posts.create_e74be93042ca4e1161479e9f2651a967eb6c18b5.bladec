@@ -1,0 +1,26 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('title', 'Create Post'); ?>
+<?php $this->startSection('content'); ?>
+<div class="col-md-12 offset-md-0.5">
+ <form action="" method="post" enctype="multipart/form-data">
+ <label for="titlePost">
+ <h3 class="font-weight-bold text-dark">Tiêu đề bài viết</h3>
+ </label>
+ <input type="text" name="titlePost" id="titlePost" class="form-control" placeholder="Nhập tiêu đề bài viết">
+ <pre></pre>
+ <label for="thumbnail">
+ <h3>Ảnh bìa bài viết</h3>
+ </label>
+ <input type="file" name="thumbnail" id="thumbnail" class="form-control">
+ <pre></pre>
+ <label for="summernote">
+ <h3>Nội dung bài viết</h3>
+ </label>
+ <div id="summernote" class="form-control"></div>
+ <button class="btn btn-success">Đăng bài</button>
+ </form>
+</div>
+ 
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>

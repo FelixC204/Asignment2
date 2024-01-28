@@ -1,0 +1,5 @@
+<?php echo $this->runChild('layout.header'); ?>
+<main id="main">
+ <?php echo $this->yieldContent('content'); ?>
+</main>
+<?php echo $this->runChild('layout.footer'); ?>
