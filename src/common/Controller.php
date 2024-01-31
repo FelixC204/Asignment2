@@ -2,6 +2,7 @@
 namespace Quockhanh\Asignment2\common;
 use eftec\bladeone\BladeOne;
 
+
 class Controller {
 
     public function renderClient($view, $data=[]) {

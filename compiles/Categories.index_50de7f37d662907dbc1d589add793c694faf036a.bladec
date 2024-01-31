@@ -1,0 +1,63 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('title', 'Danh mục'); ?>
+<?php $this->startSection('content'); ?>
+ <div class="container mt-5">
+ <div class="add-btn">
+ <button class="btn btn-success"><a class="text-reset" href="/admin/categories/create">Add Category</a></button>
+ </div>
+ <table class="table">
+ <thead>
+ <tr>
+ <th scope="col">ID</th>
+ <th scope="col">Name</th>
+ <th scope="col">Create At</th>
+ <th scope="col">Actions</th>
+ </tr>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $data; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $cate): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <th scope="row"><?php echo \htmlentities($cate['id']??'', ENT_QUOTES, 'UTF-8', false); ?></th>
+ <td><?php echo \htmlentities($cate['name']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($cate['create_at']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td>
+ <button class="btn btn-primary"><a href="/admin/categories/<?php echo \htmlentities($cate['id']??'', ENT_QUOTES, 'UTF-8', false); ?>/update"
+ class="text-reset">Update</a></button>
+ <button class="btn btn-danger delete-category"
+ data-url="/admin/categories/<?php echo \htmlentities($cate['id']??'', ENT_QUOTES, 'UTF-8', false); ?>/delete">Delete</button>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+ </div>
+ <script>
+ var deleteButtons = document.querySelectorAll('.delete-category');
+ 
+ deleteButtons.forEach(function(button) {
+ button.addEventListener('click', function (event) {
+ event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+ 
+ var deleteUrl = this.getAttribute('data-url');
+ 
+ Swal.fire({
+ title: 'Bạn có chắc chắn muốn xóa?',
+ text: 'Hành động này không thể hoàn tác!',
+ icon: 'warning',
+ showCancelButton: true,
+ confirmButtonColor: '#d33',
+ cancelButtonColor: '#3085d6',
+ confirmButtonText: 'Xóa',
+ cancelButtonText: 'Hủy bỏ'
+ }).then((result) => {
+ if (result.isConfirmed) {
+ window.location.href = deleteUrl;
+ }
+ });
+ });
+ });
+ </script>    
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>

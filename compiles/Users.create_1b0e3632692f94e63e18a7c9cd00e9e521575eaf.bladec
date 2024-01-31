@@ -1,0 +1,58 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('title', 'Create User'); ?>
+<?php $this->startSection('content'); ?>
+ <div class="container">
+ <h2>Add User</h2>
+ <form action="" method="post">
+ <!-- Tên -->
+ <div class="mb-3">
+ <label for="name" class="form-label">Tên:</label>
+ <input type="text" class="form-control" id="name" name="name" required>
+ </div>
+
+ <!-- Email -->
+ <div class="mb-3">
+ <label for="email" class="form-label">Email:</label>
+ <input type="email" class="form-control" id="email" name="email" required>
+ </div>
+
+ <!-- Password -->
+ <div class="mb-3">
+ <label for="password" class="form-label">Password:</label>
+ <input type="password" class="form-control" id="password" name="password" required>
+ </div>
+ <!-- Image -->
+ <div class="mb-3">
+ <label for="image" class="form-label">Image:</label>
+ <input type="file" class="form-control" id="image" name="image" required>
+ </div>
+ 
+
+ <!-- Phone -->
+ <div class="mb-3">
+ <label for="phone" class="form-label">Phone:</label>
+ <input type="text" class="form-control" id="phone" name="phone" required>
+ </div>
+
+
+ <!--Adsress-->
+ <div class="mb-3">
+ <label for="address" class="form-label">Address:</label>
+ <input type="text" class="form-control" id="address" name="address" required>
+ <!-- Role (Select) -->
+ <div class="mb-3">
+ <label for="role" class="form-label">Role:</label>
+ <select class="form-select form-control" id="role" name="role" required>
+ <option value="admin">Admin</option>
+ <option value="user">User</option>
+ <!-- Thêm các lựa chọn khác nếu cần -->
+ </select>
+ </div>
+
+ <!-- Nút Submit -->
+ <button type="submit" class="btn btn-primary">Add User</button>
+ </form>
+ </div>
+<?php $this->stopSection(); ?>
+
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>

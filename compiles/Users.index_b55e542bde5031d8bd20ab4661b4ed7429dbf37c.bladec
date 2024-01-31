@@ -1,9 +1,9 @@
 <?php $_shouldextend[1]=1; ?>
-<?php $this->startSection('title', 'User'); ?>    
+<?php $this->startSection('title', 'User'); ?>
 <?php $this->startSection('content'); ?>
-<div class="container mt-5">
+ <div class="container mt-5">
  <div class="add-btn">
- <button class="btn btn-success"><a class="text-reset" href="/admin/user/add">Add User</a></button>
+ <button class="btn btn-success"><a href="/admin/user/create"class="text-reset">Add User</a></button>
  </div>
  <table class="table">
  <thead>
@@ -11,21 +11,68 @@
  <th scope="col">ID</th>
  <th scope="col">Name</th>
  <th scope="col">Email</th>
+ <th scope="col">Password</th>
+ <th scope="col">Role</th>
  <th scope="col">Actions</th>
  </tr>
  </thead>
  <tbody>
+ <?php $__currentLoopData = $users; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $user): $loop = $this->incrementLoopIndices();  ?>
  <tr>
- <th scope="row">1</th>
- <td>John Doe</td>
- <td>johndoe@example.com</td>
+ <th scope="row"><?php echo \htmlentities($user['id']??'', ENT_QUOTES, 'UTF-8', false); ?></th>
+ <td><?php echo \htmlentities($user['name']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td><?php echo \htmlentities($user['email']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
  <td>
- <button class="btn btn-primary">Edit</button>
- <button class="btn btn-danger">Delete</button>
+ <div class="password-container">
+ <input type="password" class="password-display" value="<?php echo \htmlentities($user['password']??'', ENT_QUOTES, 'UTF-8', false); ?>" disabled>
+ <button class="btn btn-sm btn-toggle-password" type="button">
+ <i class="far fa-eye"></i>
+ </button>
+ </div>
+ </td>
+ <td><?php echo \htmlentities($user['role']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <?php /* <td><?php echo \htmlentities(str_repeat('***', strlen($user['password']))??'', ENT_QUOTES, 'UTF-8', false); ?> <button class=""><i class="fa-solid fa-eye"></i></button></i></td> */ ?>
+ <td>
+ <button class="btn btn-primary"><a href="/admin/user/<?php echo \htmlentities($user['id']??'', ENT_QUOTES, 'UTF-8', false); ?>/update"
+ class="text-reset">Update</a></button>
+ <button class="btn btn-info"><a href="/admin/user/<?php echo \htmlentities($user['id']??'', ENT_QUOTES, 'UTF-8', false); ?>/show"
+ class="text-reset">Show</a></button>
+ <button class="btn btn-danger delete-user"
+ data-url="/admin/user/<?php echo \htmlentities($user['id']??'', ENT_QUOTES, 'UTF-8', false); ?>/delete">Delete</button>
  </td>
  </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
  </tbody>
  </table>
  </div>
+
+ <script>
+ var deleteButtons = document.querySelectorAll('.delete-user');
+ 
+ deleteButtons.forEach(function(button) {
+ button.addEventListener('click', function (event) {
+ event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+ 
+ var deleteUrl = this.getAttribute('data-url');
+ 
+ Swal.fire({
+ title: 'Bạn có chắc chắn muốn xóa?',
+ text: 'Hành động này không thể hoàn tác!',
+ icon: 'warning',
+ showCancelButton: true,
+ confirmButtonColor: '#d33',
+ cancelButtonColor: '#3085d6',
+ confirmButtonText: 'Xóa',
+ cancelButtonText: 'Hủy bỏ'
+ }).then((result) => {
+ if (result.isConfirmed) {
+ window.location.href = deleteUrl;
+ }
+ });
+ });
+ });
+ </script>    
 <?php $this->stopSection(); ?>
+
 <?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>

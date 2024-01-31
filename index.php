@@ -1,5 +1,5 @@
 <?php 
-error_reporting(E_ERROR | E_PARSE);
+session_start();
 require_once './vendor/autoload.php';
 require_once 'env.php';
 require_once 'routes.php';

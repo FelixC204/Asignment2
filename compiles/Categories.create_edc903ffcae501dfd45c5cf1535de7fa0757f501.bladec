@@ -1,0 +1,15 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('title', 'Thêm Danh mục'); ?>    
+<?php $this->startSection('content'); ?>
+<div class="container mt-3">
+ <form action="" method="post">
+ <input type='hidden' name='<?php  echo '_token'; ?>' value='<?php echo $this->csrf_token; ?>'/>
+ <div class="form-group">
+ <label for="exampleInputEmail1">Tên danh mục</label>
+ <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Tên danh mục" name="name">
+ </div>
+ <button type="submit" class="btn btn-primary">Submit</button>
+ </form>
+</div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>

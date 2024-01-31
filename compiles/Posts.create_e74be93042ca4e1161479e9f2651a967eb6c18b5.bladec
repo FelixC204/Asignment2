@@ -1,7 +1,7 @@
 <?php $_shouldextend[1]=1; ?>
 <?php $this->startSection('title', 'Create Post'); ?>
 <?php $this->startSection('content'); ?>
-<div class="col-md-12 offset-md-0.5">
+ <div class="col-md-12 offset-md-0.5">
  <form action="" method="post" enctype="multipart/form-data">
  <label for="titlePost">
  <h3 class="font-weight-bold text-dark">Tiêu đề bài viết</h3>
@@ -16,11 +16,12 @@
  <label for="summernote">
  <h3>Nội dung bài viết</h3>
  </label>
- <div id="summernote" class="form-control"></div>
- <button class="btn btn-success">Đăng bài</button>
+ <textarea id="summernote" name="content" class="form-control"></textarea>
+ <button type="submit" name="posting" class="btn btn-success float-right mt-2">Đăng bài</button>
+ <button type="submit" name="draft" class="btn btn-danger float-right mr-2 mt-2">Nháp</button>
+ <div class="clearfix"></div>
  </form>
-</div>
- 
+ </div>
 <?php $this->stopSection(); ?>
 
 <?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main'); } ?>
