@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-4 offset-md-4">
             <div class="profile-picture">
-                <img src="{{$user['image']}}" class="img-fluid" alt="Profile Picture">
+                <img src="../../../{{$user['image']}}" class="img-fluid" alt="Profile Picture">
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
         <div class="col-md-6 offset-md-3">
             <div class="profile-info">
                 <h1>Thông tin cá nhân</h1>
-                <h1><strong>Họ tên:</strong>{{$user['name']}}</h1>
+                <p><strong>Họ tên:</strong>{{$user['name']}}</p>
                 <p><strong>Email:</strong> {{$user['email']}}</p>
                 <p><strong>Số điện thoại:</strong> {{$user['phone']}}</p>
                 <p><strong>Địa chỉ:</strong>{{$user['address']}}</p>

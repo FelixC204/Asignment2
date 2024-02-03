@@ -22,4 +22,10 @@ class Controller {
         $blade = new BladeOne($path);
         echo $blade->run($view, $data);
     }
+
+    public function render($view, $data=[]) {
+        $path = __DIR__ .'/../Views';
+        $blade = new BladeOne($path);
+        echo $blade->run($view, $data);
+    }
 }

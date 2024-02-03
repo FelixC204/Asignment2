@@ -31,63 +31,66 @@ class UserController extends Controller
             "address" => "",
             "phone" => ""
         ];
-    
+
         if (!empty($_POST)) {
             if (!empty($_FILES['image']['name'])) {
-                $uploadedImagePath = '../../../assets/uploads/' . $_FILES['image']['name'];
-                move_uploaded_file($_FILES['image']['tmp_name'], $uploadedImagePath);
-                $data['image'] =$uploadedImagePath;
+                $target_dir = "public/uploads/";
+                $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+                $data["image"] = $target_file;
             }
-    
+
             $data["name"] = $_POST["name"];
             $data["email"] = $_POST["email"];
             $data["password"] = $_POST["password"];
             $data["address"] = $_POST['address'];
             $data["phone"] = $_POST["phone"];
             $data["role"] = $_POST["role"];
-    
             $this->user->insertUser($data);
             header('Location: /admin/user');
             exit();
         }
-    
+
         return $this->renderAdmin($this->folder . __FUNCTION__);
     }
 
 
     public function update($id)
     {
-       $data['user'] = $this->user->getUserById($id);
-       if(empty($data['user'])){
-        die(404);
-       }
-       if(!empty($_POST)){
-        $userData = [
-            'name'=> $_POST['name'],
-            'email'=> $_POST['email'],
-            'password'=> $_POST['password'],
-        ];
-        $this->user->updateUser(
-            $id, $userData
-        );
-        $_SESSION['success'] = "Cập nhật thành công!";
-        header('Location: /admin/user/'.$id.'/update');
-        exit();
-       }
-       return $this->renderAdmin($this->folder . __FUNCTION__, $data);
+        $data['user'] = $this->user->getUserById($id);
+        if (empty($data['user'])) {
+            die(404);
+        }
+        if (!empty($_POST)) {
+            $userData = [
+                'name' => $_POST['name'],
+                'email' => $_POST['email'],
+                'password' => $_POST['password'],
+            ];
+            $this->user->updateUser(
+                $id,
+                $userData
+            );
+            $_SESSION['success'] = "Cập nhật thành công!";
+            header('Location: /admin/user/' . $id . '/update');
+            exit();
+        }
+        return $this->renderAdmin($this->folder . __FUNCTION__, $data);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $data['user'] = $this->user->getUserById($id);
-        if(empty($data['user'])){
+        if (empty($data['user'])) {
             die(404);
         }
         return $this->renderAdmin($this->folder . __FUNCTION__, $data);
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $data['user'] = $this->user->getUserById($id);
-        if(empty($data['user'])){
+        if (empty($data['user'])) {
             die(404);
         }
         $this->user->deleteUser($id);

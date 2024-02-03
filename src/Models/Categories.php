@@ -18,8 +18,7 @@ class Categories extends Model
         $sql = "SELECT * FROM $this->table";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetchAll();
-        return $result;
+        return $stmt->fetchAll();
     }
 
     public function insert($data)

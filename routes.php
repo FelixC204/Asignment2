@@ -30,8 +30,17 @@ $router->mount("/admin", function () use ($router) {
         $router->match('GET|POST', '/create',      CategoriesController::class . '@create');
     });
     $router->mount("/post", function () use ($router) {
-        $router->get("/create", PostController::class . "@create");
+        $router->get("/", PostController::class . "@index");
+        $router->match('GET|POST',"/create", PostController::class . "@create");
+        $router->get("/{id}/delete", PostController::class ."@delete");
+        $router->match('GET|POST',"/{id}/update", PostController::class ."@update");
     });
+});
+
+//Nếu không có đường dẫn nào đúng thì về trang 404
+$router->set404(function () {
+    header('HTTP/1.1 404 Not Found');
+    return $this->render('404');
 });
 
 $router->run();

@@ -23,6 +23,7 @@
       placeholder: 'Nhập nội dung bài viết',
       tabsize: 2,
       height: 480,
+      backgroundColor: '#fff',
       toolbar: [
         ['style', ['style']],
         ['font', ['bold', 'underline', 'clear']],
@@ -89,11 +90,17 @@
             timer: 1500
         });
     });
+
+
+    
 </script>
 @php
     $_SESSION['success'] = null;
 @endphp
 @endif
+
+
+
 </body>
 
 </html>

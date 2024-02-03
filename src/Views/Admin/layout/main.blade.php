@@ -6,9 +6,7 @@
             @include('layout.elements.topbar')
 
             @yield('content')
-
-        
     </div>
     @include('layout.elements.footer')
 </div>
-@include('layout.elements.script')
+@include('layout.elements.script') 

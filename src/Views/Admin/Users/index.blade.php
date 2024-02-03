@@ -17,59 +17,72 @@
                 </tr>
             </thead>
             <tbody>
-              @foreach ($users as $user)
-              <tr>
-                  <th scope="row">{{ $user['id'] }}</th>
-                  <td>{{ $user['name'] }}</td>
-                  <td>{{ $user['email'] }}</td>
-                  <td>
-                    <div class="password-container">
-                        <input type="password" class="password-display" value="{{ $user['password'] }}" disabled>
-                        <button class="btn btn-sm btn-toggle-password" type="button">
-                            <i class="far fa-eye"></i>
-                        </button>
-                    </div>
-                </td>
-                <td>{{ $user['role'] }}</td>
-                  {{-- <td>{{ str_repeat('***', strlen($user['password'])) }} <button class=""><i class="fa-solid fa-eye"></i></button></i></td> --}}
-                  <td>
-                    <button class="btn btn-primary"><a href="/admin/user/{{ $user['id'] }}/update"
-                            class="text-reset">Update</a></button>
+                @foreach ($users as $user)
+                    <tr>
+                        <th scope="row">{{ $user['id'] }}</th>
+                        <td>{{ $user['name'] }}</td>
+                        <td>{{ $user['email'] }}</td>
+                        <td>
+                            <div class="password-container">
+                                <input type="password" class="password-display" value="{{ $user['password'] }}" disabled>
+                                <button class="btn btn-sm btn-toggle-password" type="button" onclick="togglePassword(this)">
+                                    <i class="far fa-eye"></i>
+                                </button>
+                            </div>
+                        </td>
+                        <td>{{ $user['role'] }}</td>
+                        {{-- <td>{{ str_repeat('***', strlen($user['password'])) }} <button class=""><i class="fa-solid fa-eye"></i></button></i></td> --}}
+                        <td>
+                            <button class="btn btn-primary"><a href="/admin/user/{{ $user['id'] }}/update"
+                                    class="text-reset">Update</a></button>
                             <button class="btn btn-info"><a href="/admin/user/{{ $user['id'] }}/show"
-                                class="text-reset">Show</a></button>
-                    <button class="btn btn-danger delete-user"
-                        data-url="/admin/user/{{ $user['id'] }}/delete">Delete</button>
-                </td>
-              </tr>
-          @endforeach
+                                    class="text-reset">Show</a></button>
+                            <button class="btn btn-danger delete-user"
+                                data-url="/admin/user/{{ $user['id'] }}/delete">Delete</button>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
 
     <script>
+        function togglePassword(button) {
+        var row = $(button).closest('tr');
+        var passwordInput = row.find(".password-display");
+        var eyeIcon = row.find(".btn-toggle-password i");
+
+        if (passwordInput.attr("type") === "password") {
+            passwordInput.attr("type", "text");
+            eyeIcon.removeClass("far fa-eye").addClass("far fa-eye-slash");
+        } else {
+            passwordInput.attr("type", "password");
+            eyeIcon.removeClass("far fa-eye-slash").addClass("far fa-eye");
+        }
+    }
         var deleteButtons = document.querySelectorAll('.delete-user');
-    
+
         deleteButtons.forEach(function(button) {
-          button.addEventListener('click', function (event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
-    
-            var deleteUrl = this.getAttribute('data-url');
-    
-            Swal.fire({
-              title: 'Bạn có chắc chắn muốn xóa?',
-              text: 'Hành động này không thể hoàn tác!',
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#d33',
-              cancelButtonColor: '#3085d6',
-              confirmButtonText: 'Xóa',
-              cancelButtonText: 'Hủy bỏ'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.href = deleteUrl;
-              }
+            button.addEventListener('click', function(event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+
+                var deleteUrl = this.getAttribute('data-url');
+
+                Swal.fire({
+                    title: 'Bạn có chắc chắn muốn xóa?',
+                    text: 'Hành động này không thể hoàn tác!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Xóa',
+                    cancelButtonText: 'Hủy bỏ'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = deleteUrl;
+                    }
+                });
             });
-          });
         });
-    </script>    
+    </script>
 @endsection

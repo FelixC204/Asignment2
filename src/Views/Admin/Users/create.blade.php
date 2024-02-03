@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <h2>Add User</h2>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <!-- Tên -->
         <div class="mb-3">
             <label for="name" class="form-label">Tên:</label>
@@ -43,8 +43,8 @@
         <div class="mb-3">
             <label for="role" class="form-label">Role:</label>
             <select class="form-select form-control" id="role" name="role" required>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="1">Admin</option>
+                <option value="2">User</option>
                 <!-- Thêm các lựa chọn khác nếu cần -->
             </select>
         </div>
