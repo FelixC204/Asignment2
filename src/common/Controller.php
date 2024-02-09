@@ -23,8 +23,8 @@ class Controller {
         echo $blade->run($view, $data);
     }
 
-    public function render($view, $data=[]) {
-        $path = __DIR__ .'/../Views';
+    public function renderMessages($view, $data=[]) {
+        $path = __DIR__ .'/../Views/messages/';
         $blade = new BladeOne($path);
         echo $blade->run($view, $data);
     }

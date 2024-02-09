@@ -42,7 +42,7 @@ class PostController extends Controller
             $data=[
                 
                 'title'=> $title,
-                'content'=> $this->store($content),
+                'content'=>$content,
                 'excerpt'=> $excerpt,
                 'thumbnail'=> $pathImage,
                 'category_id'=> $categoryID
@@ -80,7 +80,6 @@ class PostController extends Controller
         $dom = new \DOMDocument();
         $dom->loadHTML($content);
         $images = $dom->getElementsByTagName('img');
-
         foreach ($images as $img) {
             $data = $img->getAttribute('src');
             $imageData = substr($data, strpos($data, ',') + 1);
@@ -134,7 +133,7 @@ class PostController extends Controller
             }
             $data=[
                 'title'=> $title,
-                'content'=> $this->store($content),
+                'content'=> $content,
                 'excerpt'=> $excerpt,
                 'thumbnail'=> $pathImage,
                 'category_id'=> $categoryID

@@ -6,8 +6,7 @@
  <?php echo $this->runChild('layout.elements.topbar'); ?>
 
  <?php echo $this->yieldContent('content'); ?>
-
- 
  </div>
+ <?php echo $this->runChild('layout.elements.footer'); ?>
 </div>
-<?php echo $this->runChild('layout.elements.script'); ?>
+<?php echo $this->runChild('layout.elements.script'); ?> 

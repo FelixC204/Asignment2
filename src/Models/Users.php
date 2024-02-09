@@ -17,7 +17,18 @@ class Users extends Model
     // ];
     public function getAll()
     {
-        $sql = "SELECT * FROM $this->table";
+        $sql = "SELECT 
+        r.name AS r_name,
+        u.id AS u_id,
+        u.name AS u_name,
+        u.email AS u_email,
+        u.password AS u_password,
+        u.image AS u_image,
+        u.address AS u_address,
+        u.phone AS u_phone,
+        u.role AS u_role
+    FROM $this->table u
+    INNER JOIN roles r ON u.role = r.id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
@@ -74,5 +85,15 @@ class Users extends Model
             $err = $e->getMessage();
             return "<script>Không thể xóa $this->table với lỗi:$err </script>";
         }
+    }
+
+    public function getEmailAndPassword($email, $password)
+    {
+        $sql = "SELECT * FROM $this->table WHERE email = :email AND password = :password";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 }

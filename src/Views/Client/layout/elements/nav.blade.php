@@ -32,9 +32,22 @@
     <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
     <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
     <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-    <a href="/login" class="mx-2">
-        <span class="bi bi-person-fill"></span>
-    </a>
+    <a href="/profile" class="mx-2"><span class="bi-person-fill"></span></a>
+    @if (!empty($_SESSION['user']))
+        <a href="/admin" class="mx-2" title="Dashboard">
+            <i class="bi bi-speedometer2"></i>
+        </a>
+        <a href="/admin/logout" class="mx-2" title="Logout">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="mx-1">{{ $_SESSION['user']->name }}</span>
+        </a>
+    @else
+        <a href="/auth/login" class="mx-2" title="Login">
+            <span class="bi-person"></span>
+            <span class="mx-1">Login</span>
+        </a>
+    @endif
+
 
     <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
     <i class="bi bi-list mobile-nav-toggle"></i>

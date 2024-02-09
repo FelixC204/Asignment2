@@ -7,15 +7,17 @@ use Quockhanh\Asignment2\Controllers\Admin\PostController;
 use Quockhanh\Asignment2\Controllers\Admin\UserController;
 use Quockhanh\Asignment2\Controllers\Auth\AuthController;
 use Quockhanh\Asignment2\Controllers\Client\HomeController;
+use Quockhanh\Asignment2\common\Controller;
 
 
 $router = new Router();
 
 $router->get("/", HomeController::class . '@index');
-$router->get('/login', AuthController::class . '@index');
-
+$router->get("/profile", HomeController::class . '@profile');
+$router->match('GET|POST','/auth/login', AuthController::class . '@login');
 $router->mount("/admin", function () use ($router) {
     $router->get("/", AdminController::class . "@index");
+    $router->get("/logout", AuthController::class . "@logout");
     $router->mount("/user", function () use ($router) {
         $router->get("/", UserController::class . "@index");
         $router->match('GET|POST', '/create',  UserController::class . '@create');
@@ -37,10 +39,23 @@ $router->mount("/admin", function () use ($router) {
     });
 });
 
+$router->before('GET|POST', '/admin/.*', function () {
+    if (!isset($_SESSION['user'])) {
+        header('Location: /auth/login');
+        exit();
+    }
+});
+$router->before('GET|POST', '/admin/*', function () {
+    if (!isset($_SESSION['user'])) {
+        header('Location: /auth/login');
+        exit();
+    }
+});
+
+
 //Nếu không có đường dẫn nào đúng thì về trang 404
 $router->set404(function () {
-    header('HTTP/1.1 404 Not Found');
-    return $this->render('404');
+    return (new Controller())->renderMessages('404');
 });
 
 $router->run();

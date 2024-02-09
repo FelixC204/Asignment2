@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Profile</title>
+
+    <link rel="stylesheet" href="../assets/Client/css/profile.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="back">
+        <a href="/"><button>Trở về</button></a>
+    </div>
+    <div class="container">
+        <div class="cover-avt"></div>
+        <div class="avt">
+            <div class="img">
+                <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmFuZG9tfGVufDB8fDB8fHww"
+                    alt="dayuas">
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="name">
+            <h1>Nguyễn Văn A</h1>
+        </div>
+        <div class="info">
+            <div class="item">
+                <p>Ngày sinh: 01/01/2000</p>
+            </div>
+            <div class="item">
+                <p>Giới tính: Nam</p>
+            </div>
+            <div class="item">
+                <p>Địa chỉ: Hà Nội</p>
+            </div>
+            <div class="item">
+                <p>Số điện thoại: 0123456789</p>
+            </div>
+            <div class="item">
+                <p>Email: mail@google.com</p>
+                <button id="edit-profile"><svg class="h-8 w-8 text-red-500" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" />
+                        <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+                        <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                        <line x1="16" y1="5" x2="19" y2="8" />
+                    </svg></button>
+            </div>
+
+            <script>
+                const editProfile = document.getElementById('edit-profile');
+                const info = document.querySelector('.info');
+                const form = document.createElement('form');
+                form.innerHTML = `
+            <div class="item">
+                <input type="text" value="Nguyễn Văn A">
+            </div>
+            <div class="item">
+                <input type="text" value="01/01/2000">
+            </div>
+            <div class="item">
+                <input type="text" value="Nam">
+            </div>
+            <div class="item">
+                <input type="text" value="Hà Nội">
+            </div>
+            <div class="item">
+                <input type="text" value="0123456789">
+            </div>
+            <div class="item">
+                <input type="text" value=""
+            </div>
+            <button id="save-profile">Lưu</button>
+        `;
+                editProfile.addEventListener('click', () => {
+                    info.innerHTML = '';
+                    info.appendChild(form);
+                });
+            </script>
+</body>
+
+</html>

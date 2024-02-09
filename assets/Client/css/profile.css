@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    background-color: white;
+}
+
+.avt{
+    position: relative;
+    border: 0.1875em solid #0F1C3F;
+    border-radius: 50%;
+    height: 150px;
+    box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125);
+    width: 150px;
+    margin: 100px;
+    top: -10rem;
+}
+
+
+.img img{
+    border: 0.23.8125em  solid #0F1C3F;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+}
+
+.cover-avt{
+    background-image: url("https://pa1.aminoapps.com/5777/907094d21223c045378ad25427c5c9541b9b1dc5_hq.gif");
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125);
+    width: 190vh;
+    height: 250px;
+    margin-left: 50px;
+    margin-right: auto;
+    position: relative;
+    bottom: -40px;
+}
+
+.back button {
+    background-color: #2d23e6; /* Màu nền xanh */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    width: 90px;
+    font-size: 14px;
+    box-shadow: 0.4rem 0.375em 0 0 rgba(15, 28, 63, 0.125);
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 90px 0px 0px 90px;
+    position: relative;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.back button:hover{
+    transition: 0.01s;
+    margin-left: 1px;
+}
+
+/* .card{
+    background-color: rgb(206, 117, 117);
+    height: 500px;
+    width: 400px;
+    margin-left: 100px;
+    position: relative;
+    top: -15rem;
+    border: 0.1rem solid rgba(13, 13, 13, 0.125);
+    box-shadow: 0.4rem 0.375em 0 0 rgba(13, 13, 13, 0.125);
+}
+
+.card:hover{
+    transition: 0.5s all;
+    height: 510px;
+    width: 410px;
+    margin-left: 95px;
+    top: -16rem;
+}
+
+.card .info {
+    padding: 20px;
+}
+
+.card .item p {
+    margin: 5px 0;
+    color: #fff;
+} */
+
+
+.card {
+    background-color: #f3f3f3;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 100px;
+    top: -15rem;
+    max-width: 400px;
+    position: relative;
+}
+
+.name {
+    background-color: #1877f2;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.name h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.info {
+    padding: 20px;
+}
+
+.item {
+    margin-bottom: 10px;
+}
+
+.item p {
+    margin: 5px 0;
+}
+
+.item p:first-child {
+    font-weight: bold;
+    color: #333;
+}
+
+.item p:last-child {
+    color: #666;
+}

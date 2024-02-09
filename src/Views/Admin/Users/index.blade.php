@@ -19,26 +19,26 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <th scope="row">{{ $user['id'] }}</th>
-                        <td>{{ $user['name'] }}</td>
-                        <td>{{ $user['email'] }}</td>
+                        <th scope="row">{{ $user['u_id'] }}</th>
+                        <td>{{ $user['u_name'] }}</td>
+                        <td>{{ $user['u_email'] }}</td>
                         <td>
                             <div class="password-container">
-                                <input type="password" class="password-display" value="{{ $user['password'] }}" disabled>
+                                <input type="password" class="password-display" value="{{ $user['u_password'] }}" disabled>
                                 <button class="btn btn-sm btn-toggle-password" type="button" onclick="togglePassword(this)">
                                     <i class="far fa-eye"></i>
                                 </button>
                             </div>
                         </td>
-                        <td>{{ $user['role'] }}</td>
+                        <td>{{ $user['r_name'] }}</td>
                         {{-- <td>{{ str_repeat('***', strlen($user['password'])) }} <button class=""><i class="fa-solid fa-eye"></i></button></i></td> --}}
                         <td>
-                            <button class="btn btn-primary"><a href="/admin/user/{{ $user['id'] }}/update"
-                                    class="text-reset">Update</a></button>
-                            <button class="btn btn-info"><a href="/admin/user/{{ $user['id'] }}/show"
-                                    class="text-reset">Show</a></button>
+                           <a href="/admin/user/{{ $user['u_id'] }}/update"
+                                    class="text-reset"><button class="btn btn-primary">Update</button></a>
+                            <a href="/admin/user/{{ $user['u_id'] }}/show"
+                                    class="text-reset"><button class="btn btn-info">Show</button></a>
                             <button class="btn btn-danger delete-user"
-                                data-url="/admin/user/{{ $user['id'] }}/delete">Delete</button>
+                                data-url="/admin/user/{{ $user['u_id'] }}/delete">Delete</button>
                         </td>
                     </tr>
                 @endforeach

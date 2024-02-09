@@ -42,7 +42,7 @@ class UserController extends Controller
 
             $data["name"] = $_POST["name"];
             $data["email"] = $_POST["email"];
-            $data["password"] = $_POST["password"];
+            $data["password"] = md5($_POST["password"]);
             $data["address"] = $_POST['address'];
             $data["phone"] = $_POST["phone"];
             $data["role"] = $_POST["role"];
@@ -65,8 +65,13 @@ class UserController extends Controller
             $userData = [
                 'name' => $_POST['name'],
                 'email' => $_POST['email'],
-                'password' => $_POST['password'],
             ];
+
+            if (!empty($_POST['password'])) {
+                $userData['password'] = md5($_POST['password']);
+            } else {
+                $userData['password'] = $data['user']['password'];
+            }
             $this->user->updateUser(
                 $id,
                 $userData
